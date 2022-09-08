@@ -27,7 +27,7 @@ struct AudioPlayer: UIViewControllerRepresentable {
 }
 
 struct SongDetailView: View {
-  
+  @ObservedObject var download = SongDownload()
   @Binding var musicItem: MusicItem
   @State private var playMusic = false
   
@@ -46,11 +46,21 @@ struct SongDetailView: View {
             .shadow(radius: 10)
           Text("\(self.musicItem.trackName) - \(self.musicItem.artistName)")
           Text(self.musicItem.collectionName)
-          Button(action: {}) {
-            Text("Download")
+          Button(action: downloadButtonTapped) {
+            Text(download.downloadLocation == nil ? "Download" : "Listen")
           }
         }
       }
+    }.sheet(isPresented: $playMusic) {
+      AudioPlayer(songUrl: download.downloadLocation!)
+    }
+  }
+  func downloadButtonTapped() {
+    if self.download.downloadLocation == nil {
+      guard let previewUrl = self.musicItem.previewUrl else { return }
+      self.download.fetchSongAtUrl(previewUrl)
+    } else {
+      self.playMusic = true
     }
   }
 }
@@ -88,4 +98,49 @@ struct MusicItem: Codable, Identifiable  {
     case preview = "previewUrl"
     case artwork = "artworkUrl100"
   }
+}
+
+class SongDownload: NSObject, ObservableObject {
+  @Published var downloadLocation: URL?
+  var downloadTask: URLSessionDownloadTask?
+  var downloadUrl: URL?
+  
+  lazy var urlSession: URLSession = {
+    let configuration = URLSessionConfiguration.default
+    return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+  }()
+  
+  func fetchSongAtUrl(_ url: URL) {
+    downloadUrl = url
+    downloadTask = urlSession.downloadTask(with: url)
+    downloadTask?.resume()
+  }
+}
+
+extension SongDownload: URLSessionDownloadDelegate {
+  
+  func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+    if let error = error {
+      print(error.localizedDescription)
+    }
+  }
+  func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+    let fileManager = FileManager.default
+    guard let documentPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first,
+          let lastPathComponent = downloadUrl?.lastPathComponent else { fatalError() }
+    let destinationUrl = documentPath.appendingPathComponent(lastPathComponent)
+    do {
+      if fileManager.fileExists(atPath: destinationUrl.path) {
+        try fileManager.removeItem(at: destinationUrl)
+      }
+      try fileManager.copyItem(at: location, to: destinationUrl)
+      DispatchQueue.main.async {
+        self.downloadLocation = destinationUrl
+      }
+    } catch {
+      print(error.localizedDescription)
+    }
+  }
+  
+  
 }
