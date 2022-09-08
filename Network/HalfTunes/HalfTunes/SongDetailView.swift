@@ -8,59 +8,34 @@
 import SwiftUI
 import AVKit
 
-struct AudioPlayer: UIViewControllerRepresentable {
-  
-  func makeUIViewController(context: Context) -> AVPlayerViewController {
-    let player = AVPlayer(url: songUrl)
-    let playerViewController = AVPlayerViewController()
-    playerViewController.player = player
-    playerViewController.entersFullScreenWhenPlaybackBegins = true
-    return playerViewController
-  }
-  
-  func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
-    //
-  }
-  
-  let songUrl: URL
-  
-}
-
 struct SongDetailView: View {
   @ObservedObject var download = SongDownload()
   @Binding var musicItem: MusicItem
   @State private var playMusic = false
-  
+  @State var audioPlayer: AVAudioPlayer!
   var musicImage: UIImage? = nil
   
   var body: some View {
     VStack {
-      GeometryReader { reader in
-        VStack {
-          Image("artwork")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(height: reader.size.height / 2)
-            .cornerRadius(50)
-            .padding()
-            .shadow(radius: 10)
-          Text("\(self.musicItem.trackName) - \(self.musicItem.artistName)")
-          Text(self.musicItem.collectionName)
-          Button(action: downloadButtonTapped) {
-            Text(download.downloadLocation == nil ? "Download" : "Listen")
-          }
-        }
+      Image("artwork")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .shadow(radius: 10)
+      Text("\(self.musicItem.trackName) - \(self.musicItem.artistName)")
+      Text(self.musicItem.collectionName)
+      Button(action: downloadButtonTapped) {
+        Text(download.downloadLocation == nil ? "Download" : "Listen")
       }
-    }.sheet(isPresented: $playMusic) {
-      AudioPlayer(songUrl: download.downloadLocation!)
     }
+    .padding()
   }
   func downloadButtonTapped() {
     if self.download.downloadLocation == nil {
       guard let previewUrl = self.musicItem.previewUrl else { return }
       self.download.fetchSongAtUrl(previewUrl)
     } else {
-      self.playMusic = true
+      audioPlayer = try! AVAudioPlayer(contentsOf: download.downloadLocation!)
+      audioPlayer.play()
     }
   }
 }
@@ -121,7 +96,7 @@ extension SongDownload: URLSessionDownloadDelegate {
   
   func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
     if let error = error {
-      print(error.localizedDescription)
+      print("DEBUG: \(error.localizedDescription)")
     }
   }
   func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
@@ -138,9 +113,7 @@ extension SongDownload: URLSessionDownloadDelegate {
         self.downloadLocation = destinationUrl
       }
     } catch {
-      print(error.localizedDescription)
+      print("DEBUG: \(error.localizedDescription)")
     }
   }
-  
-  
 }
