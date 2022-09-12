@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E93838C428CF0FAD00B63A3D /* SongDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93838C328CF0FAD00B63A3D /* SongDownload.swift */; };
+		E93838C628CF109800B63A3D /* MediaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93838C528CF109800B63A3D /* MediaResponse.swift */; };
 		E9E4BC9A28C9BDF500389936 /* HalfTunesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4BC9928C9BDF500389936 /* HalfTunesApp.swift */; };
 		E9E4BC9C28C9BDF500389936 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4BC9B28C9BDF500389936 /* ContentView.swift */; };
 		E9E4BC9E28C9BDF600389936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9E4BC9D28C9BDF600389936 /* Assets.xcassets */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E93838C328CF0FAD00B63A3D /* SongDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDownload.swift; sourceTree = "<group>"; };
+		E93838C528CF109800B63A3D /* MediaResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaResponse.swift; sourceTree = "<group>"; };
 		E9E4BC9628C9BDF500389936 /* HalfTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E4BC9928C9BDF500389936 /* HalfTunesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfTunesApp.swift; sourceTree = "<group>"; };
 		E9E4BC9B28C9BDF500389936 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 				E9E4BC9928C9BDF500389936 /* HalfTunesApp.swift */,
 				E9E4BC9B28C9BDF500389936 /* ContentView.swift */,
 				E9E4BCA728C9BE5B00389936 /* SongDetailView.swift */,
+				E93838C328CF0FAD00B63A3D /* SongDownload.swift */,
+				E93838C528CF109800B63A3D /* MediaResponse.swift */,
 				E9E4BC9D28C9BDF600389936 /* Assets.xcassets */,
 				E9E4BC9F28C9BDF600389936 /* Preview Content */,
 			);
@@ -140,6 +146,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E93838C628CF109800B63A3D /* MediaResponse.swift in Sources */,
+				E93838C428CF0FAD00B63A3D /* SongDownload.swift in Sources */,
 				E9E4BC9C28C9BDF500389936 /* ContentView.swift in Sources */,
 				E9E4BCA828C9BE5B00389936 /* SongDetailView.swift in Sources */,
 				E9E4BC9A28C9BDF500389936 /* HalfTunesApp.swift in Sources */,

@@ -23,18 +23,39 @@ struct SongDetailView: View {
         .shadow(radius: 10)
       Text("\(self.musicItem.trackName) - \(self.musicItem.artistName)")
       Text(self.musicItem.collectionName)
-      Button(action: downloadButtonTapped) {
-        Text(download.downloadLocation == nil ? "Download" : "Listen")
+      if download.isDownloading {
+        Text("\(Int(download.downloadedAmount * 100))% downloaded")
+      }
+      HStack {
+        Button<Text>(action: downloadButtonTapped) {
+          switch download.state {
+          case .waiting: return Text("Download")
+          case .downloading: return Text("Pause")
+          case .paused: return Text("Resume")
+          case .finished: return Text("Listen")
+          }
+        }
+        if download.isDownloading {
+          Button(action: download.cancel) {
+            Text("Cancel")
+          }
+        }
       }
     }
     .padding()
     .onAppear(perform: displayAlbumArt)
   }
   func downloadButtonTapped() {
-    if self.download.downloadLocation == nil {
-      guard let previewUrl = self.musicItem.previewUrl else { return }
-      self.download.fetchSongAtUrl(previewUrl)
-    } else {
+    switch download.state  {
+      
+    case .waiting:
+      guard let previewUrl = musicItem.previewUrl else { return }
+      download.fetchSongAtUrl(previewUrl)
+    case .downloading:
+      download.pause()
+    case .paused:
+      download.resume()
+    case .finished:
       audioPlayer = try! AVAudioPlayer(contentsOf: download.downloadLocation!)
       audioPlayer.play()
     }
@@ -61,77 +82,8 @@ struct SongDetailView_Previews: PreviewProvider {
   }
 }
 
-struct MediaResponse: Codable{
-  var results: [MusicItem]
-}
 
-struct MusicItem: Codable, Identifiable  {
-  
-  let id: Int
-  let artistName: String
-  let trackName: String
-  let collectionName: String
-  let preview: String
-  let artwork: String
-  
-  var localFile: URL?
-  var isDownloading = false
-  var downloadLocation: URL?
-  var previewUrl: URL? { URL(string: preview)}
-  
-  enum CodingKeys: String, CodingKey {
-    case id = "trackId"
-    case artistName
-    case trackName
-    case collectionName
-    case preview = "previewUrl"
-    case artwork = "artworkUrl100"
-  }
-}
 
-class SongDownload: NSObject, ObservableObject {
-  @Published var downloadLocation: URL?
-  var downloadTask: URLSessionDownloadTask?
-  var downloadUrl: URL?
-  
-  lazy var urlSession: URLSession = {
-    let configuration = URLSessionConfiguration.default
-    return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-  }()
-  
-  func fetchSongAtUrl(_ url: URL) {
-    downloadUrl = url
-    downloadTask = urlSession.downloadTask(with: url)
-    downloadTask?.resume()
-  }
-  
-  func fetchArt(_ url: URL) {
-    
-  }
-}
 
-extension SongDownload: URLSessionDownloadDelegate {
-  
-  func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-    if let error = error {
-      print("DEBUG: \(error.localizedDescription)")
-    }
-  }
-  func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-    let fileManager = FileManager.default
-    guard let documentPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first,
-          let lastPathComponent = downloadUrl?.lastPathComponent else { fatalError() }
-    let destinationUrl = documentPath.appendingPathComponent(lastPathComponent)
-    do {
-      if fileManager.fileExists(atPath: destinationUrl.path) {
-        try fileManager.removeItem(at: destinationUrl)
-      }
-      try fileManager.copyItem(at: location, to: destinationUrl)
-      DispatchQueue.main.async {
-        self.downloadLocation = destinationUrl
-      }
-    } catch {
-      print("DEBUG: \(error.localizedDescription)")
-    }
-  }
-}
+
+
