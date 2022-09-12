@@ -13,11 +13,11 @@ struct SongDetailView: View {
   @Binding var musicItem: MusicItem
   @State private var playMusic = false
   @State var audioPlayer: AVAudioPlayer!
-  var musicImage: UIImage? = nil
+  @State private var musicImage = UIImage(named: "artwork")!
   
   var body: some View {
     VStack {
-      Image("artwork")
+      Image(uiImage: musicImage)
         .resizable()
         .aspectRatio(contentMode: .fit)
         .shadow(radius: 10)
@@ -28,6 +28,7 @@ struct SongDetailView: View {
       }
     }
     .padding()
+    .onAppear(perform: displayAlbumArt)
   }
   func downloadButtonTapped() {
     if self.download.downloadLocation == nil {
@@ -37,6 +38,19 @@ struct SongDetailView: View {
       audioPlayer = try! AVAudioPlayer(contentsOf: download.downloadLocation!)
       audioPlayer.play()
     }
+  }
+  func displayAlbumArt() {
+    guard let albumImageUrl = URL(string: musicItem.artwork) else { return }
+    let task = URLSession.shared.downloadTask(with: albumImageUrl) { location, response, error in
+      guard let location = location,
+            let imageData = try? Data(contentsOf: location),
+      let image = UIImage(data: imageData) else { return }
+              
+      DispatchQueue.main.async {
+        musicImage = image
+      }
+    }
+    task.resume()
   }
 }
 
@@ -89,6 +103,10 @@ class SongDownload: NSObject, ObservableObject {
     downloadUrl = url
     downloadTask = urlSession.downloadTask(with: url)
     downloadTask?.resume()
+  }
+  
+  func fetchArt(_ url: URL) {
+    
   }
 }
 
