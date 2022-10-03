@@ -18,15 +18,18 @@ class SongDownload: NSObject, ObservableObject {
     case finished
   }
   
+  var urlSession: URLSession!
   var downloadTask: URLSessionDownloadTask?
   var downloadUrl: URL?
   var resumeData: Data?
   var isDownloading: Bool { state == .downloading || state == .paused }
-  lazy var urlSession: URLSession = {
-    let configuration = URLSessionConfiguration.default
-    return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-  }()
   
+  override init() {
+    super.init()
+    let configuration = URLSessionConfiguration.background(withIdentifier: "ru.fibeApp.HalfTunes")
+    urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+    
+  }
   func fetchSongAtUrl(_ url: URL) {
     downloadUrl = url
     downloadTask = urlSession.downloadTask(with: url)

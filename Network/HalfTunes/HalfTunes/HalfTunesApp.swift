@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct HalfTunesApp: App {
+  var currentDownload: SongDownload?
   var body: some Scene {
     WindowGroup {
       ContentView()
     }
   }
 }
+
+
