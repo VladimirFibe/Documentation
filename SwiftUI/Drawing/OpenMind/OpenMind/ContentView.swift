@@ -2,8 +2,12 @@ import SwiftUI
 
 struct ContentView: View {
     var gradient: Gradient {
-        let colors: [Color] = [Color("Violet"), .indigo, .mint]
-        return Gradient(colors: colors)
+        let stops: [Gradient.Stop] = [
+            .init(color: Color("Violet"), location: 0.0),
+            .init(color: .indigo, location: 0.4),
+            .init(color: .mint, location: 0.45)
+        ]
+        return Gradient(stops: stops)
     }
     var body: some View {
         ZStack {
