@@ -2,7 +2,9 @@ import SwiftUI
 
 struct ContentView: View {                   
     var body: some View {
-BackgroundView()
+        GeometryReader { geometry in
+            BackgroundView(size: geometry.size)
+        }
     }
 }
 

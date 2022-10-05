@@ -5,13 +5,22 @@ struct CellView: View {
     @State private var text = ""
     @FocusState var textFieldIsFocused: Bool
     @EnvironmentObject var cellStore: CellStore
+    @State private var offset: CGSize = .zero
+    @State private var currentOffset: CGSize = .zero
+    
     var isSelected: Bool {
         cell == cellStore.selectedCell
     }
     
     var body: some View {
-        
-        
+        let drag = DragGesture()
+            .onChanged { value in
+                offset = currentOffset + value.translation
+            }
+            .onEnded { value in
+                offset = currentOffset + value.translation
+                currentOffset = offset
+            }
         ZStack {
             cell.shape?.shape
                 .foregroundColor(Color(uiColor: .systemBackground))
@@ -25,12 +34,13 @@ struct CellView: View {
                 .focused($textFieldIsFocused)
         }
         .frame(width: cell.size.width, height: cell.size.height)
-        .offset(cell.offset)
+        .offset(cell.offset + offset)
         .onAppear { text = cell.text }
         .onChange(of: isSelected, perform: { isSelected in
             if !isSelected { textFieldIsFocused = false}
         })
         .onTapGesture { cellStore.selectedCell = cell }
+        .simultaneousGesture(drag)
     }
 }
 

@@ -23,4 +23,10 @@ class CellStore: ObservableObject {
         else { fatalError("Cell \(cell) does not exist")}
         return index
     }
+    
+    func addCell(offset: CGSize) -> Cell {
+        let cell = Cell(offset: offset)
+        cells.append(cell)
+        return cell
+    }
 }
