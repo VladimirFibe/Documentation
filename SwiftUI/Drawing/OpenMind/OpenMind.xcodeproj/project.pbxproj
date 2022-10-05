@@ -15,6 +15,7 @@
 		E94F556C28EB0C1900B64664 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E94F556B28EB0C1900B64664 /* Colors.xcassets */; };
 		E9E75A1328EC4B1B00BB91C6 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E75A1228EC4B1B00BB91C6 /* CellModel.swift */; };
 		E9E75A1528EC513D00BB91C6 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E75A1428EC513D00BB91C6 /* CellView.swift */; };
+		E9E75A1728EC551500BB91C6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E75A1628EC551500BB91C6 /* BackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		E94F556B28EB0C1900B64664 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		E9E75A1228EC4B1B00BB91C6 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 		E9E75A1428EC513D00BB91C6 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		E9E75A1628EC551500BB91C6 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				E91AADF028EB40DD00FA28CE /* Shapes.swift */,
 				E9E75A1228EC4B1B00BB91C6 /* CellModel.swift */,
 				E9E75A1428EC513D00BB91C6 /* CellView.swift */,
+				E9E75A1628EC551500BB91C6 /* BackgroundView.swift */,
 				E94F556128EB03EB00B64664 /* Assets.xcassets */,
 				E94F556B28EB0C1900B64664 /* Colors.xcassets */,
 				E94F556328EB03EB00B64664 /* Preview Content */,
@@ -150,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E75A1728EC551500BB91C6 /* BackgroundView.swift in Sources */,
 				E94F556028EB03E700B64664 /* ContentView.swift in Sources */,
 				E9E75A1528EC513D00BB91C6 /* CellView.swift in Sources */,
 				E94F555E28EB03E700B64664 /* OpenMindApp.swift in Sources */,

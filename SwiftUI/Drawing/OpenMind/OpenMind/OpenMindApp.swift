@@ -5,6 +5,7 @@ struct OpenMindApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(CellStore())
         }
     }
 }

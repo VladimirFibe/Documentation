@@ -12,6 +12,7 @@ struct Cell: Identifiable, Equatable {
 }
 
 class CellStore: ObservableObject {
+    @Published var selectedCell: Cell?
     @Published var cells = [
         Cell(color: .red, text: "Drawing in SwiftUI"),
         Cell(color: .green, offset: CGSize(width: 100, height: 300), text: "Shapes")
