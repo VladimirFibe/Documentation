@@ -13,6 +13,7 @@
 		E94F556228EB03EB00B64664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E94F556128EB03EB00B64664 /* Assets.xcassets */; };
 		E94F556528EB03EB00B64664 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E94F556428EB03EB00B64664 /* Preview Assets.xcassets */; };
 		E94F556C28EB0C1900B64664 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E94F556B28EB0C1900B64664 /* Colors.xcassets */; };
+		E972DF1028EE59040093700E /* ColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972DF0F28EE59040093700E /* ColorSlider.swift */; };
 		E9E75A1328EC4B1B00BB91C6 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E75A1228EC4B1B00BB91C6 /* CellModel.swift */; };
 		E9E75A1528EC513D00BB91C6 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E75A1428EC513D00BB91C6 /* CellView.swift */; };
 		E9E75A1728EC551500BB91C6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E75A1628EC551500BB91C6 /* BackgroundView.swift */; };
@@ -27,6 +28,7 @@
 		E94F556128EB03EB00B64664 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E94F556428EB03EB00B64664 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E94F556B28EB0C1900B64664 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		E972DF0F28EE59040093700E /* ColorSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSlider.swift; sourceTree = "<group>"; };
 		E9E75A1228EC4B1B00BB91C6 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 		E9E75A1428EC513D00BB91C6 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		E9E75A1628EC551500BB91C6 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
@@ -65,11 +67,10 @@
 			children = (
 				E94F555D28EB03E700B64664 /* OpenMindApp.swift */,
 				E94F555F28EB03E700B64664 /* ContentView.swift */,
-				E91AADF028EB40DD00FA28CE /* Shapes.swift */,
-				E9E75A1228EC4B1B00BB91C6 /* CellModel.swift */,
-				E9E75A1428EC513D00BB91C6 /* CellView.swift */,
-				E9F593A528EDAAF3005A25F1 /* Extensions.swift */,
 				E9E75A1628EC551500BB91C6 /* BackgroundView.swift */,
+				E972DF0D28EE58CE0093700E /* Cell */,
+				E972DF0E28EE58D50093700E /* Controls */,
+				E972DF0C28EE58BA0093700E /* Extensions */,
 				E94F556128EB03EB00B64664 /* Assets.xcassets */,
 				E94F556B28EB0C1900B64664 /* Colors.xcassets */,
 				E94F556328EB03EB00B64664 /* Preview Content */,
@@ -83,6 +84,32 @@
 				E94F556428EB03EB00B64664 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E972DF0C28EE58BA0093700E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E9F593A528EDAAF3005A25F1 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E972DF0D28EE58CE0093700E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E91AADF028EB40DD00FA28CE /* Shapes.swift */,
+				E9E75A1228EC4B1B00BB91C6 /* CellModel.swift */,
+				E9E75A1428EC513D00BB91C6 /* CellView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E972DF0E28EE58D50093700E /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				E972DF0F28EE59040093700E /* ColorSlider.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +189,7 @@
 				E94F555E28EB03E700B64664 /* OpenMindApp.swift in Sources */,
 				E91AADF128EB40DD00FA28CE /* Shapes.swift in Sources */,
 				E9E75A1328EC4B1B00BB91C6 /* CellModel.swift in Sources */,
+				E972DF1028EE59040093700E /* ColorSlider.swift in Sources */,
 				E9F593A628EDAAF3005A25F1 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
