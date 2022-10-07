@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E91AADF128EB40DD00FA28CE /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AADF028EB40DD00FA28CE /* Shapes.swift */; };
+		E928C32D28EF935000929A63 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928C32C28EF935000929A63 /* ColorPicker.swift */; };
+		E928C32F28EFAD0E00929A63 /* FlyoutMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928C32E28EFAD0E00929A63 /* FlyoutMenu.swift */; };
+		E928C33228EFB42F00929A63 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = E928C33128EFB42F00929A63 /* Algorithms */; };
 		E94F555E28EB03E700B64664 /* OpenMindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F555D28EB03E700B64664 /* OpenMindApp.swift */; };
 		E94F556028EB03E700B64664 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F555F28EB03E700B64664 /* ContentView.swift */; };
 		E94F556228EB03EB00B64664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E94F556128EB03EB00B64664 /* Assets.xcassets */; };
@@ -22,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		E91AADF028EB40DD00FA28CE /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		E928C32C28EF935000929A63 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		E928C32E28EFAD0E00929A63 /* FlyoutMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyoutMenu.swift; sourceTree = "<group>"; };
 		E94F555A28EB03E700B64664 /* OpenMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E94F555D28EB03E700B64664 /* OpenMindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMindApp.swift; sourceTree = "<group>"; };
 		E94F555F28EB03E700B64664 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E928C33228EFB42F00929A63 /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				E972DF0F28EE59040093700E /* ColorSlider.swift */,
+				E928C32C28EF935000929A63 /* ColorPicker.swift */,
+				E928C32E28EFAD0E00929A63 /* FlyoutMenu.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -128,6 +136,9 @@
 			dependencies = (
 			);
 			name = OpenMind;
+			packageProductDependencies = (
+				E928C33128EFB42F00929A63 /* Algorithms */,
+			);
 			productName = OpenMind;
 			productReference = E94F555A28EB03E700B64664 /* OpenMind.app */;
 			productType = "com.apple.product-type.application";
@@ -156,6 +167,9 @@
 				Base,
 			);
 			mainGroup = E94F555128EB03E700B64664;
+			packageReferences = (
+				E928C33028EFB42F00929A63 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
 			productRefGroup = E94F555B28EB03E700B64664 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -184,10 +198,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9E75A1728EC551500BB91C6 /* BackgroundView.swift in Sources */,
+				E928C32F28EFAD0E00929A63 /* FlyoutMenu.swift in Sources */,
 				E94F556028EB03E700B64664 /* ContentView.swift in Sources */,
 				E9E75A1528EC513D00BB91C6 /* CellView.swift in Sources */,
 				E94F555E28EB03E700B64664 /* OpenMindApp.swift in Sources */,
 				E91AADF128EB40DD00FA28CE /* Shapes.swift in Sources */,
+				E928C32D28EF935000929A63 /* ColorPicker.swift in Sources */,
 				E9E75A1328EC4B1B00BB91C6 /* CellModel.swift in Sources */,
 				E972DF1028EE59040093700E /* ColorSlider.swift in Sources */,
 				E9F593A628EDAAF3005A25F1 /* Extensions.swift in Sources */,
@@ -397,6 +413,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E928C33028EFB42F00929A63 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E928C33128EFB42F00929A63 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E928C33028EFB42F00929A63 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E94F555228EB03E700B64664 /* Project object */;
 }
