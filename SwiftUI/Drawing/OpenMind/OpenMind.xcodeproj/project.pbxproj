@@ -40,6 +40,7 @@
 		E94F556428EB03EB00B64664 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E94F556B28EB0C1900B64664 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		E972DF0F28EE59040093700E /* ColorSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSlider.swift; sourceTree = "<group>"; };
+		E9D0507528F10D6E00CB60CC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E9E75A1228EC4B1B00BB91C6 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 		E9E75A1428EC513D00BB91C6 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		E9E75A1628EC551500BB91C6 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
@@ -61,6 +62,7 @@
 		E94F555128EB03E700B64664 = {
 			isa = PBXGroup;
 			children = (
+				E9D0507528F10D6E00CB60CC /* README.md */,
 				E94F555C28EB03E700B64664 /* OpenMind */,
 				E94F555B28EB03E700B64664 /* Products */,
 			);
