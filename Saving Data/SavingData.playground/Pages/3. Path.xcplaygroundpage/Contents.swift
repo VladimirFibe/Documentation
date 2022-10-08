@@ -7,4 +7,11 @@ let stringURL = FileManager.documentDirectoryURL
     .appendingPathComponent("String")
     .appendingPathExtension("txt")
 
-stringURL
+stringURL.path
+
+let challengeString = "Frame"
+let challengeURL = URL(fileURLWithPath: challengeString, relativeTo: FileManager.documentDirectoryURL)
+    .appendingPathExtension("png")
+
+print(challengeURL.lastPathComponent)
+

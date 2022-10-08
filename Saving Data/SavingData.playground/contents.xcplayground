@@ -3,5 +3,7 @@
     <pages>
         <page name='2. Document Directory URL'/>
         <page name='3. Path'/>
+        <page name='5. Data and Data Types'/>
+        <page name='6. Saving and Loading Data'/>
     </pages>
 </playground>
