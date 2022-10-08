@@ -28,6 +28,9 @@ enum CellShape: CaseIterable {
 }
 
 struct ShapeSelectionGrid: View {
+    @Environment(\.dismiss) var dismiss
+    @Binding var selectedCellShape: CellShape
+    
     var body: some View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
         LazyVGrid(columns: columns, spacing: 10) {
@@ -38,6 +41,10 @@ struct ShapeSelectionGrid: View {
                         cellShape.shape
                             .stroke(style: StrokeStyle(lineWidth: 10, lineJoin: .round))
                             .foregroundColor(.accentColor)
+                    }
+                    .onTapGesture {
+                        selectedCellShape = cellShape
+                        dismiss()
                     }
             }
             .aspectRatio(2, contentMode: .fit)
@@ -173,6 +180,6 @@ extension Shape {
 
 struct Shapes_Previews: PreviewProvider {
     static var previews: some View {
-        ShapeSelectionGrid()
+        ShapeSelectionGrid(selectedCellShape: .constant(.heart))
     }
 }

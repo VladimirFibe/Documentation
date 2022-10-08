@@ -1,18 +1,21 @@
 import SwiftUI
 
 struct CellView: View {
-    let cell: Cell
-    @State private var text = ""
-    @FocusState var textFieldIsFocused: Bool
     @EnvironmentObject var cellStore: CellStore
+    @EnvironmentObject var modalViews: ModalViews
+    
+    @FocusState var textFieldIsFocused: Bool
+    @State private var text = ""
     @State private var offset: CGSize = .zero
     @State private var currentOffset: CGSize = .zero
     
+    let cell: Cell
     var isSelected: Bool {
         cell == cellStore.selectedCell
     }
     
     var body: some View {
+        let flyoutMenu = FlyoutMenu(options: setupOptions())
         let drag = DragGesture()
             .onChanged { value in
                 offset = currentOffset + value.translation
@@ -22,18 +25,32 @@ struct CellView: View {
                 currentOffset = offset
             }
         ZStack {
-            cell.shape?.shape
-                .foregroundColor(Color(uiColor: .systemBackground))
-            
-            TimelineView(.animation(minimumInterval: 0.2)) { context in
-                StrokeView(cell: cell, isSelected: isSelected, date: context.date)
+            ZStack {
+                cell.shape?.shape
+                    .foregroundColor(Color(uiColor: .systemBackground))
+                
+                TimelineView(.animation(minimumInterval: 0.2)) { context in
+                    StrokeView(cell: cell, isSelected: isSelected, date: context.date)
+                }
+                
+                if let drawing = cell.drawing {
+                    DrawingView(drawing: drawing, size: cell.size)
+                        .scaleEffect(0.8)
+                } else {
+                    TextField("Enter cell text", text: $text)
+                        .padding()
+                        .multilineTextAlignment(.center)
+                        .focused($textFieldIsFocused)
+                }
+                
             }
-            TextField("Enter cell text", text: $text)
-                .padding()
-                .multilineTextAlignment(.center)
-                .focused($textFieldIsFocused)
+            .frame(width: cell.size.width, height: cell.size.height)
+            if isSelected {
+                flyoutMenu
+                    .offset(x: cell.size.width / 2,
+                            y: -cell.size.height / 2)
+            }
         }
-        .frame(width: cell.size.width, height: cell.size.height)
         .offset(cell.offset + offset)
         .onAppear { text = cell.text }
         .onChange(of: isSelected, perform: { isSelected in
@@ -72,6 +89,47 @@ extension CellView {
     }
 }
 
+extension CellView {
+    func setupOptions() -> [FlyoutMenu.Option] {
+        let options: [FlyoutMenu.Option] = [
+            .init(image: .init(systemName: "trash"), color: .blue) {
+                cellStore.delete(cell)
+            },
+            .init(image: .init(systemName: "square.on.circle"), color: .green) {
+                modalViews.showShapes.toggle()
+            },
+            .init(image: .init("crayon"), color: .teal) {
+                modalViews.showDrawingPad.toggle()
+            },
+            .init(image: .init(systemName: "flame"), color: .red),
+            .init(image: .init(systemName: "link"), color: .purple)
+        ]
+        return options
+    }
+}
+
+extension CellView {
+    struct DrawingView: View {
+        let drawing: Drawing
+        let size: CGSize
+        
+        var body: some View {
+            let scaleFactor = drawing.size.scaleFactor(toFit: size)
+            Canvas { context, size in
+                context.scaleBy(x: scaleFactor, y: scaleFactor)
+                for path in drawing.paths {
+                    let style = StrokeStyle(lineWidth: 5,
+                                            lineCap: .round,
+                                            lineJoin: .round)
+                    context.stroke(path.path,
+                                   with: .color(path.color),
+                                   style: style)
+                }
+            }
+            .aspectRatio(drawing.size, contentMode: .fit)
+        }
+    }
+}
 struct CellView_Previews: PreviewProvider {
     static var previews: some View {
         CellView(cell: Cell())

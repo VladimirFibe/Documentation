@@ -11,6 +11,9 @@
 		E928C32D28EF935000929A63 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928C32C28EF935000929A63 /* ColorPicker.swift */; };
 		E928C32F28EFAD0E00929A63 /* FlyoutMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928C32E28EFAD0E00929A63 /* FlyoutMenu.swift */; };
 		E928C33228EFB42F00929A63 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = E928C33128EFB42F00929A63 /* Algorithms */; };
+		E939E57128F05E3E001C5534 /* PathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939E57028F05E3E001C5534 /* PathExtensions.swift */; };
+		E939E57328F05E96001C5534 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939E57228F05E96001C5534 /* DrawingPad.swift */; };
+		E939E57528F065AA001C5534 /* DrawingPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939E57428F065AA001C5534 /* DrawingPadView.swift */; };
 		E94F555E28EB03E700B64664 /* OpenMindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F555D28EB03E700B64664 /* OpenMindApp.swift */; };
 		E94F556028EB03E700B64664 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F555F28EB03E700B64664 /* ContentView.swift */; };
 		E94F556228EB03EB00B64664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E94F556128EB03EB00B64664 /* Assets.xcassets */; };
@@ -27,6 +30,9 @@
 		E91AADF028EB40DD00FA28CE /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		E928C32C28EF935000929A63 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		E928C32E28EFAD0E00929A63 /* FlyoutMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyoutMenu.swift; sourceTree = "<group>"; };
+		E939E57028F05E3E001C5534 /* PathExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathExtensions.swift; sourceTree = "<group>"; };
+		E939E57228F05E96001C5534 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPad.swift; sourceTree = "<group>"; };
+		E939E57428F065AA001C5534 /* DrawingPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPadView.swift; sourceTree = "<group>"; };
 		E94F555A28EB03E700B64664 /* OpenMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E94F555D28EB03E700B64664 /* OpenMindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMindApp.swift; sourceTree = "<group>"; };
 		E94F555F28EB03E700B64664 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,6 +80,7 @@
 				E94F555D28EB03E700B64664 /* OpenMindApp.swift */,
 				E94F555F28EB03E700B64664 /* ContentView.swift */,
 				E9E75A1628EC551500BB91C6 /* BackgroundView.swift */,
+				E939E57428F065AA001C5534 /* DrawingPadView.swift */,
 				E972DF0D28EE58CE0093700E /* Cell */,
 				E972DF0E28EE58D50093700E /* Controls */,
 				E972DF0C28EE58BA0093700E /* Extensions */,
@@ -95,6 +102,7 @@
 		E972DF0C28EE58BA0093700E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E939E57028F05E3E001C5534 /* PathExtensions.swift */,
 				E9F593A528EDAAF3005A25F1 /* Extensions.swift */,
 			);
 			path = Extensions;
@@ -116,6 +124,7 @@
 				E972DF0F28EE59040093700E /* ColorSlider.swift */,
 				E928C32C28EF935000929A63 /* ColorPicker.swift */,
 				E928C32E28EFAD0E00929A63 /* FlyoutMenu.swift */,
+				E939E57228F05E96001C5534 /* DrawingPad.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -197,15 +206,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E939E57328F05E96001C5534 /* DrawingPad.swift in Sources */,
 				E9E75A1728EC551500BB91C6 /* BackgroundView.swift in Sources */,
 				E928C32F28EFAD0E00929A63 /* FlyoutMenu.swift in Sources */,
 				E94F556028EB03E700B64664 /* ContentView.swift in Sources */,
 				E9E75A1528EC513D00BB91C6 /* CellView.swift in Sources */,
 				E94F555E28EB03E700B64664 /* OpenMindApp.swift in Sources */,
+				E939E57528F065AA001C5534 /* DrawingPadView.swift in Sources */,
 				E91AADF128EB40DD00FA28CE /* Shapes.swift in Sources */,
 				E928C32D28EF935000929A63 /* ColorPicker.swift in Sources */,
 				E9E75A1328EC4B1B00BB91C6 /* CellModel.swift in Sources */,
 				E972DF1028EE59040093700E /* ColorSlider.swift in Sources */,
+				E939E57128F05E3E001C5534 /* PathExtensions.swift in Sources */,
 				E9F593A628EDAAF3005A25F1 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

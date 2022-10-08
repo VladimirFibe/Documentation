@@ -3,10 +3,10 @@ import SwiftUI
 struct ColorSlider: View {
     @Binding var sliderValue: Double
     var range: ClosedRange<Double> = 0...1
-    var color: Color = .blue
+    var colors: [Color] = [.black, .blue, .white]
     var body: some View {
         let gradient = LinearGradient(
-            colors: [.black, color, .white],
+            colors: colors,
             startPoint: .leading,
             endPoint: .trailing
         )

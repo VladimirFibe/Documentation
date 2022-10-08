@@ -6,6 +6,7 @@ struct OpenMindApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(CellStore())
+                .environmentObject(ModalViews())
         }
     }
 }
