@@ -29,27 +29,6 @@ struct ContentView: View {
         .sheet(isPresented: $modalIsPresented) {
             NewTaskView(taskStore: taskStore)
         }
-        .onAppear {
-            loadJSON()
-        }
-    }
-    private func loadJSON() {
-        guard let tasksJSONURL = Bundle.main.url(forResource: "Tasks",
-                                                withExtension: "json"),
-              let prioritizedTasksJSONURL = Bundle.main.url(forResource: "PrioritizedTasks", withExtension: "json") else { return }
-        
-        let decoder = JSONDecoder()
-        
-        do {
-            let tasksData = try Data(contentsOf: tasksJSONURL)
-            let prioritizedTasksData = try Data(contentsOf: prioritizedTasksJSONURL)
-            let tasks = try decoder.decode([Task].self, from: tasksData)
-            let prioritizedTasks = try decoder.decode([TaskStore.PrioritizedTasks].self, from: prioritizedTasksData)
-            print("DEBUG: \(tasks)")
-            print("DEBUG: \(prioritizedTasks)")
-        } catch {
-            print("DEBUG: \(error.localizedDescription)")
-        }
     }
 }
 
