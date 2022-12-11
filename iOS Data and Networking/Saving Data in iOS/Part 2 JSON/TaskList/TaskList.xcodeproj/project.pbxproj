@@ -25,6 +25,8 @@
 		02187CBE29463323005C25E5 /* TaskEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02187CBD29463323005C25E5 /* TaskEditingView.swift */; };
 		02187CC0294633FC005C25E5 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02187CBF294633FC005C25E5 /* SectionView.swift */; };
 		02187CC22946376C005C25E5 /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02187CC12946376C005C25E5 /* NewTaskView.swift */; };
+		02187CC429464F86005C25E5 /* Tasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 02187CC329464F86005C25E5 /* Tasks.json */; };
+		02187CC629464F8F005C25E5 /* PrioritizedTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 02187CC529464F8F005C25E5 /* PrioritizedTasks.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		02187CBD29463323005C25E5 /* TaskEditingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditingView.swift; sourceTree = "<group>"; };
 		02187CBF294633FC005C25E5 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		02187CC12946376C005C25E5 /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
+		02187CC329464F86005C25E5 /* Tasks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tasks.json; sourceTree = "<group>"; };
+		02187CC529464F8F005C25E5 /* PrioritizedTasks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PrioritizedTasks.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +118,9 @@
 			children = (
 				02187C972946218D005C25E5 /* Assets.xcassets */,
 				02187CA32946269A005C25E5 /* Task.json */,
+				02187CC329464F86005C25E5 /* Tasks.json */,
 				02187CA72946271C005C25E5 /* PrioritizedTask.json */,
+				02187CC529464F8F005C25E5 /* PrioritizedTasks.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -199,8 +205,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02187CC629464F8F005C25E5 /* PrioritizedTasks.json in Resources */,
 				02187CA82946271C005C25E5 /* PrioritizedTask.json in Resources */,
 				02187CA42946269A005C25E5 /* Task.json in Resources */,
+				02187CC429464F86005C25E5 /* Tasks.json in Resources */,
 				02187C9B2946218D005C25E5 /* Preview Assets.xcassets in Resources */,
 				02187C982946218D005C25E5 /* Assets.xcassets in Resources */,
 			);
