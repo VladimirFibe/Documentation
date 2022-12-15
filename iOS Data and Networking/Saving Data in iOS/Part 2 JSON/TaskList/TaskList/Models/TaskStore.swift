@@ -8,14 +8,19 @@ final class TaskStore: ObservableObject {
         PrioritizedTasks(priority: .low, names: []),
         PrioritizedTasks(priority: .no, names: [])
     ] {
-        didSet { saveJSONPrioritizedTasks()}
+        didSet {
+//            saveJSONPrioritizedTasks()
+            savePListPrioritizedTasks()
+        }
     }
     
     let tasksJSONURL = URL(fileURLWithPath: "Tasks",
                           relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("json")
-    
+    let taskPLISTURL = URL(fileURLWithPath: "Tasks",
+                           relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("plist")
     init() {
-        loadJSONPrioritizedTasks()
+//        loadJSONPrioritizedTasks()
+        loadPListPrioritizedTasks()
     }
     
     func getIndex(for priority: Task.Priority) -> Int {
@@ -23,7 +28,7 @@ final class TaskStore: ObservableObject {
     }
     
     private func loadJSONPrioritizedTasks() {
-        print(FileManager.documentsDirectoryURL)
+        guard FileManager.default.fileExists(atPath: tasksJSONURL.path) else { return }
 
         let decoder = JSONDecoder()
         
@@ -42,6 +47,32 @@ final class TaskStore: ObservableObject {
             let tasksData = try encoder.encode(prioritizedTasks)
             
             try tasksData.write(to: tasksJSONURL, options: .atomic)
+        } catch {
+            print("DEBUG: \(error.localizedDescription)")
+        }
+    }
+    
+    private func loadPListPrioritizedTasks() {
+
+        guard FileManager.default.fileExists(atPath: taskPLISTURL.path) else { return }
+        
+        let decoder = PropertyListDecoder()
+        
+        do {
+            let prioritizedTasksData = try Data(contentsOf: taskPLISTURL)
+            prioritizedTasks = try decoder.decode([PrioritizedTasks].self, from: prioritizedTasksData)
+        } catch {
+            print("DEBUG: \(error.localizedDescription)")
+        }
+    }
+    
+    private func savePListPrioritizedTasks() {
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
+        do {
+            let tasksData = try encoder.encode(prioritizedTasks)
+            
+            try tasksData.write(to: taskPLISTURL, options: .atomic)
         } catch {
             print("DEBUG: \(error.localizedDescription)")
         }
