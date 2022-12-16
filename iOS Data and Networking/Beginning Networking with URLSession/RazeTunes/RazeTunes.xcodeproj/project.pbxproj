@@ -14,6 +14,7 @@
 		0208477E294952930091609D /* MediaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208477D294952930091609D /* MediaResponse.swift */; };
 		02084780294952C20091609D /* SongDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208477F294952C20091609D /* SongDetailView.swift */; };
 		02084782294954990091609D /* SongDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02084781294954990091609D /* SongDownloader.swift */; };
+		02A88C05294BE655005FFFDB /* MutableSongDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A88C04294BE655005FFFDB /* MutableSongDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		0208477D294952930091609D /* MediaResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaResponse.swift; sourceTree = "<group>"; };
 		0208477F294952C20091609D /* SongDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDetailView.swift; sourceTree = "<group>"; };
 		02084781294954990091609D /* SongDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDownloader.swift; sourceTree = "<group>"; };
+		02A88C04294BE655005FFFDB /* MutableSongDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableSongDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				0208477F294952C20091609D /* SongDetailView.swift */,
 				02084771294951F90091609D /* ContentView.swift */,
 				02084781294954990091609D /* SongDownloader.swift */,
+				02A88C04294BE655005FFFDB /* MutableSongDownloader.swift */,
 				02084773294951FA0091609D /* Assets.xcassets */,
 				02084775294951FA0091609D /* Preview Content */,
 			);
@@ -148,6 +151,7 @@
 			files = (
 				02084780294952C20091609D /* SongDetailView.swift in Sources */,
 				02084782294954990091609D /* SongDownloader.swift in Sources */,
+				02A88C05294BE655005FFFDB /* MutableSongDownloader.swift in Sources */,
 				02084772294951F90091609D /* ContentView.swift in Sources */,
 				02084770294951F90091609D /* RazeTunesApp.swift in Sources */,
 				0208477E294952930091609D /* MediaResponse.swift in Sources */,

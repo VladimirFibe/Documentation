@@ -5,6 +5,8 @@ import AVFoundation
 struct SongDetailView: View {
     // MARK: Properties
     @ObservedObject private var downloader = SongDownloader()
+    @ObservedObject private var mutableDownloader = MutableSongDownloader()
+    
     @Binding var musicItem: MusicItem
     @MainActor @State private var artworkImage = UIImage(named: "URLSessionArtwork")!
     @MainActor @State private var downloadProgress: Float = 0
@@ -29,16 +31,17 @@ struct SongDetailView: View {
                     Text(musicItem.artistName)
                     Text(musicItem.collectionName)
                     Spacer()
-                    Button(action: {
-                        Task {
-                            await downloadTapped()
+                    Button<Text>(action: mutableDownloadTapped) {
+                        switch mutableDownloader.state {
+                        case .downloading: return Text("Pause")
+                        case .failed: return Text("Retry")
+                        case .finished: return Text("Listen")
+                        case .paused: return Text("Resume")
+                        case .waiting: return Text("Download")
                         }
-                    }, label: {
-                        Text(buttonTitle)
-                    })
-                    .disabled(isDownloading)
-                    if isDownloading {
-                        ProgressView(value: downloadProgress)
+                    }
+                    if mutableDownloader.state == .paused || mutableDownloader.state == .downloading {
+                        ProgressView(value: mutableDownloader.downloadProgress)
                     }
                     Spacer()
                 }
@@ -49,9 +52,6 @@ struct SongDetailView: View {
             Button("Dismiss", role: .cancel) {
                 showDownloadingFailedAlert = false
             }
-        }
-        .task {
-            await downloadArtwork()
         }
     }
     private func downloadArtwork() async {
@@ -84,6 +84,41 @@ struct SongDetailView: View {
             }
         } else {
             downloader.playSound()
+        }
+    }
+    
+    private func downloadSongTapped() async {
+        if downloader.downloadLocation == nil {
+            guard let artworkURL = URL(string: musicItem.artwork),
+                  let previewURL = musicItem.previewURL
+            else { return }
+            isDownloading = true
+            defer { isDownloading = false }
+            
+            do {
+                let data = try await downloader.download(songAt: previewURL, artworkAt: artworkURL)
+                
+                guard let image = UIImage(data: data) else { return }
+                artworkImage = image
+            } catch {
+                showDownloadingFailedAlert = true
+            }
+        } else {
+            downloader.playSound()
+        }
+    }
+    
+    func mutableDownloadTapped() {
+        switch mutableDownloader.state {
+        case .paused:
+            mutableDownloader.resume()
+        case .downloading:
+            mutableDownloader.pause()
+        case .failed, .waiting:
+            guard let previewURL = musicItem.previewURL else { return }
+            mutableDownloader.downloadSong(at: previewURL)
+        case .finished:
+            mutableDownloader.playSound()
         }
     }
 }
